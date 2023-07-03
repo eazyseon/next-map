@@ -21,7 +21,7 @@ const Map = ({
 
   const initializeMap = () => {
     const mapOptions = {
-      center: new window.naver.maps.LatLng(...initialCenter),
+      center: new naver.maps.LatLng(...initialCenter),
       zoom: initialZoom,
       minZoom: 9,
       scaleControl: false,
@@ -31,7 +31,7 @@ const Map = ({
       },
     };
 
-    const map = new window.naver.maps.Map(mapId, mapOptions);
+    const map = new naver.maps.Map(mapId, mapOptions);
     mapRef.current = map;
 
     if (onLoad) {

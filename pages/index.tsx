@@ -1,12 +1,19 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Header from '../components/common/Header';
 import styles from '../styles/header.module.scss';
 import Link from 'next/link';
 import { VscFeedback } from 'react-icons/vsc';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import MapSection from '../components/home/MapSection';
+import useStores from '../hooks/useStores';
 
-export default function Home() {
+export default function Home({ stores }) {
+  const { initializeStores } = useStores();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+  console.log(stores);
   return (
     <Fragment>
       <Header
@@ -31,4 +38,14 @@ export default function Home() {
       </main>
     </Fragment>
   );
+}
+
+export async function getStaticProps() {
+  /** TODO: next api routes로 불러오기 */
+  const stores = (await import('../public/stores.json')).default;
+
+  return {
+    props: { stores },
+    revalidate: 60 * 60,
+  };
 }
