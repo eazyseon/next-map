@@ -6,6 +6,7 @@ export const CURRENT_STORE_KEY = '/current-store';
 
 const useCurrentStore = () => {
   const setCurrentStore = useCallback((store: Store) => {
+    console.log(store);
     mutate(CURRENT_STORE_KEY, store);
   }, []);
 
