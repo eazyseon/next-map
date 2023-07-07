@@ -8,11 +8,9 @@ import type { NaverMap } from '../../types/map';
 import type { Coordinates } from '../../types/store';
 
 const MapSection = () => {
-  /** url query 로부터 initial zoom, center 값 설정 */
   const router = useRouter();
   /**
    * router.asPath === '/?zoom={}&lat={}&lng={}'
-   * https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
    */
   const query = useMemo(() => new URLSearchParams(router.asPath.slice(1)), []); // eslint-disable-line react-hooks/exhaustive-deps
   const initialZoom = useMemo(
